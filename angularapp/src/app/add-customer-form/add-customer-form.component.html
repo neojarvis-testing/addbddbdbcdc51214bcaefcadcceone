@@ -1,1 +1,53 @@
-<p>add-customer-form works!</p>
+<form (ngSubmit)="saveCustomer(customerForm)" #customerForm="ngForm">
+    <h2>Add Customer</h2>
+    <hr>
+
+    <!-- Customer Name -->
+    <div>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" [(ngModel)]="newCustomer.name" name="name" required>
+        <div *ngIf="customerForm.submitted && !newCustomer.name" class="error-message">Full name is required</div>
+    </div>
+
+    <!-- Email -->
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="newCustomer.email" name="email" required>
+        <div *ngIf="customerForm.submitted && !newCustomer.email" class="error-message">Email is required</div>
+    </div>
+
+    <!-- Phone Number -->
+    <div>
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" [(ngModel)]="newCustomer.phone" name="phone" required>
+        <div *ngIf="customerForm.submitted && !newCustomer.phone" class="error-message">Phone number is required</div>
+    </div>
+
+    <!-- Address -->
+    <div>
+        <label for="address">Address:</label>
+        <textarea id="address" [(ngModel)]="newCustomer.address" name="address" required></textarea>
+        <div *ngIf="customerForm.submitted && !newCustomer.address" class="error-message">Address is required</div>
+    </div>
+
+    <!-- Preferred Payment Method -->
+    <div>
+        <label for="paymentMethod">Preferred Payment Method:</label>
+        <select id="paymentMethod" [(ngModel)]="newCustomer.paymentMethod" name="paymentMethod" required>
+            <option value="" disabled>Select payment method</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="UPI">UPI</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+        </select>
+        <div *ngIf="customerForm.submitted && !newCustomer.paymentMethod" class="error-message">Payment method is required</div>
+    </div>
+
+    <!-- Loyalty Program Enrollment -->
+    <div>
+        <label for="loyaltyProgram">Enroll in Loyalty Program:</label>
+        <input type="checkbox" id="loyaltyProgram" [(ngModel)]="newCustomer.loyaltyProgram" name="loyaltyProgram">
+    </div>
+
+    <button type="submit">Add Customer</button>
+</form>

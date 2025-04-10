@@ -1,1 +1,45 @@
-<p>customer-list works!</p>
+<h2>Customer List</h2>
+
+<!-- Payment Method Filter -->
+<div class="filter-container">
+    <label for="filterPaymentMethod">Filter by Payment Method:</label>
+    <select id="filterPaymentMethod" [(ngModel)]="selectedPaymentMethod" (change)="applyFilter()">
+        <option value="">All</option>
+        <option *ngFor="let method of uniquePaymentMethods" [value]="method">{{ method }}</option>
+    </select>
+</div>
+
+<!-- Table Section -->
+<div class="table-container">
+    <table *ngIf="filteredCustomers.length > 0" class="customer-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Payment Method</th>
+                <th>Loyalty Program</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of filteredCustomers">
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.address }}</td>
+                <td>{{ customer.paymentMethod }}</td>
+                <td>{{ customer.loyaltyProgram ? 'Yes' : 'No' }}</td>
+                <td>
+                    <button class="delete-button" id="delete" (click)="deleteCustomer(customer.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- No Items Message -->
+<div *ngIf="filteredCustomers.length === 0" class="no-customers-message">
+    No matching customers found.
+</div>
