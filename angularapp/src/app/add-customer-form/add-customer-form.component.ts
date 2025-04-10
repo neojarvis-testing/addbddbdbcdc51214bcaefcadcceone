@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from '../models/customer.model';
+import { CustomerService } from '../services/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-customer-form',
@@ -11,6 +14,9 @@ export class AddCustomerFormComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(private customerService: CustomerService, private router: Router) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   saveCustomer(customerForm: any): void {
     if (customerForm.invalid) return;
